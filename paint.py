@@ -41,6 +41,18 @@ def paintTetrimino(stdscr, color, type):
         stdscr.addstr(11, 2, unit_ch, color)
         stdscr.addstr(11, 4, unit_ch, color)
         stdscr.addstr(11, 6, unit_ch, color)
+    elif type == 'l':
+        # l shape tetrimino
+        stdscr.addstr(13, 6, unit_ch, color)
+        stdscr.addstr(14, 2, unit_ch, color)
+        stdscr.addstr(14, 4, unit_ch, color)
+        stdscr.addstr(14, 6, unit_ch, color)
+    elif type == 'lr':
+        # l reverse shape tetrimino
+        stdscr.addstr(16, 2, unit_ch, color)
+        stdscr.addstr(17, 2, unit_ch, color)
+        stdscr.addstr(17, 4, unit_ch, color)
+        stdscr.addstr(17, 6, unit_ch, color)
 
 def tetris(stdscr):
 
@@ -55,6 +67,8 @@ def tetris(stdscr):
     paintTetrimino(stdscr, curses.color_pair(4), 'square')
     paintTetrimino(stdscr, curses.color_pair(5), 'line')
     paintTetrimino(stdscr, curses.color_pair(6), 't')
+    paintTetrimino(stdscr, curses.color_pair(7), 'l')
+    paintTetrimino(stdscr, curses.color_pair(8), 'lr')
 
     stdscr.getch()
 
