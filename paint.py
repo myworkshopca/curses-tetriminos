@@ -32,8 +32,15 @@ def paintTetrimino(stdscr, color, type):
         stdscr.addstr(6, 2, unit_ch, color)
         stdscr.addstr(6, 4, unit_ch, color)
     elif type == 'line':
+        # 1 x 4 line
         for x in range(2, 10, 2):
             stdscr.addstr(8, x, unit_ch, color)
+    elif type == 't':
+        # t shape tetrimino
+        stdscr.addstr(10, 4, unit_ch, color)
+        stdscr.addstr(11, 2, unit_ch, color)
+        stdscr.addstr(11, 4, unit_ch, color)
+        stdscr.addstr(11, 6, unit_ch, color)
 
 def tetris(stdscr):
 
@@ -47,6 +54,7 @@ def tetris(stdscr):
 
     paintTetrimino(stdscr, curses.color_pair(4), 'square')
     paintTetrimino(stdscr, curses.color_pair(5), 'line')
+    paintTetrimino(stdscr, curses.color_pair(6), 't')
 
     stdscr.getch()
 
