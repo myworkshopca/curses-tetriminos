@@ -23,7 +23,7 @@ def paintTetrimino(stdscr, color, type):
 
     # 9619 - ▓, 9609 - ▉, 9608 - █, 9611 - ▋
     # 9634 - ▢,
-    unit_ch = chr(9634)
+    unit_ch = chr(9609)
 
     if type == 'square':
         # 2 x 2 tetrimino
