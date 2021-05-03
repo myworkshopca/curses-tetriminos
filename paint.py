@@ -19,11 +19,16 @@ def initcolors(bg_color=-1):
 # characters for building Tetriminos could be found here:
 # - http://xahlee.info/comp/unicode_index.html
 #
+# each tetriminos will have 4 characters / units
 def paintTetrimino(stdscr, color, type):
 
     # 9619 - ▓, 9609 - ▉, 9608 - █, 9611 - ▋
     # 9634 - ▢,
+    # the character to build each tetrimino
     unit_ch = chr(9609)
+
+    # set the gap between each shape.
+    #gap = paint vertical
 
     if type == 'square':
         # 2 x 2 tetrimino
@@ -66,6 +71,7 @@ def paintTetrimino(stdscr, color, type):
         stdscr.addstr(23, 4, unit_ch, color)
         stdscr.addstr(23, 2, unit_ch, color)
 
+# the tetris game will play in a  10 x 20 area
 def tetris(stdscr):
 
     curses.curs_set(False)
@@ -75,6 +81,26 @@ def tetris(stdscr):
     # initialize color pairs
     bg = -1
     initcolors(bg)
+
+    # paint the bottom border. y = 25
+    # 8 for each tetrimino, 7 tetriminos
+    # paint vertical borders between each tetrimino.
+    for x in range(2, 10 * 6 + 12 + 8 * 2 + 1, 2):
+        stdscr.addstr(25, x, chr(9634), curses.color_pair(8))
+
+    start_x = 2
+    # paint the vertical borders.
+    for i in range(0, 8):
+        # calculate the x axis based on index.
+        if i == 0:
+            x = start_x
+        elif i == 1:
+            x = start_x + i * 14
+        else:
+            x = start_x + i * 12 + 2
+        # y axis will increase by 1.
+        for y in range (4, 25):
+            stdscr.addstr(y, x, chr(9634), curses.color_pair(8))
 
     paintTetrimino(stdscr, curses.color_pair(4), 'square')
     paintTetrimino(stdscr, curses.color_pair(5), 'line')
