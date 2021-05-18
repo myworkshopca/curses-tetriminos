@@ -30,48 +30,48 @@ def paintTetrimino(stdscr, color, type):
     # set the gap between each shape.
     #gap = paint vertical
 
-    offset_x = 18
+    offset_x = 10 
 
     if type == 'square':
         # 2 x 2 tetrimino
-        stdscr.addstr(5, 2 + offset_x, unit_ch, color)
-        stdscr.addstr(5, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(6, 2 + offset_x, unit_ch, color)
-        stdscr.addstr(6, 4 + offset_x, unit_ch, color)
+        stdscr.addstr(4, 2 + offset_x * 2, unit_ch, color)
+        stdscr.addstr(4, 4 + offset_x * 2, unit_ch, color)
+        stdscr.addstr(5, 2 + offset_x * 2, unit_ch, color)
+        stdscr.addstr(5, 4 + offset_x * 2, unit_ch, color)
     elif type == 'line':
         # 1 x 4 line
         for x in range(6, 14, 2):
-            stdscr.addstr(8, x, unit_ch, color)
+            stdscr.addstr(4, x, unit_ch, color)
     elif type == 't':
         # t shape tetrimino
-        stdscr.addstr(10, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(11, 2 + offset_x, unit_ch, color)
-        stdscr.addstr(11, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(11, 6 + offset_x, unit_ch, color)
+        stdscr.addstr(4, 4 + offset_x * 3, unit_ch, color)
+        stdscr.addstr(5, 2 + offset_x * 3, unit_ch, color)
+        stdscr.addstr(5, 4 + offset_x * 3, unit_ch, color)
+        stdscr.addstr(5, 6 + offset_x * 3, unit_ch, color)
     elif type == 'l':
         # l shape tetrimino
-        stdscr.addstr(13, 6 + offset_x, unit_ch, color)
-        stdscr.addstr(14, 2 + offset_x, unit_ch, color)
-        stdscr.addstr(14, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(14, 6 + offset_x, unit_ch, color)
+        stdscr.addstr(4, 6 + offset_x * 4 + 2, unit_ch, color)
+        stdscr.addstr(5, 2 + offset_x * 4 + 2, unit_ch, color)
+        stdscr.addstr(5, 4 + offset_x * 4 + 2, unit_ch, color)
+        stdscr.addstr(5, 6 + offset_x * 4 + 2, unit_ch, color)
     elif type == 'lr':
         # l reverse shape tetrimino
-        stdscr.addstr(16, 2 + offset_x, unit_ch, color)
-        stdscr.addstr(17, 2 + offset_x, unit_ch, color)
-        stdscr.addstr(17, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(17, 6 + offset_x, unit_ch, color)
+        stdscr.addstr(4, 2 + offset_x * 5 + 4, unit_ch, color)
+        stdscr.addstr(5, 2 + offset_x * 5 + 4, unit_ch, color)
+        stdscr.addstr(5, 4 + offset_x * 5 + 4, unit_ch, color)
+        stdscr.addstr(5, 6 + offset_x * 5 + 4, unit_ch, color)
     elif type == 'z':
         # l shape tetrimino
-        stdscr.addstr(19, 2 + offset_x, unit_ch, color)
-        stdscr.addstr(19, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(20, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(20, 6 + offset_x, unit_ch, color)
+        stdscr.addstr(4, 2 + offset_x * 6 + 6, unit_ch, color)
+        stdscr.addstr(4, 4 + offset_x * 6 + 6, unit_ch, color)
+        stdscr.addstr(5, 4 + offset_x * 6 + 6, unit_ch, color)
+        stdscr.addstr(5, 6 + offset_x * 6 + 6, unit_ch, color)
     elif type == 'zr':
         # l shape tetrimino
-        stdscr.addstr(22, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(22, 6 + offset_x, unit_ch, color)
-        stdscr.addstr(23, 4 + offset_x, unit_ch, color)
-        stdscr.addstr(23, 2 + offset_x, unit_ch, color)
+        stdscr.addstr(4, 4 + offset_x * 7 + 8, unit_ch, color)
+        stdscr.addstr(4, 6 + offset_x * 7 + 8, unit_ch, color)
+        stdscr.addstr(5, 4 + offset_x * 7 + 8, unit_ch, color)
+        stdscr.addstr(5, 2 + offset_x * 7 + 8, unit_ch, color)
 
 # the tetris game will play in a  10 x 20 area
 def tetris(stdscr):
