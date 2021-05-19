@@ -14,13 +14,17 @@ MINO_CHAR = chr(9609)
 """
 Paint the tetrimino for the given mino variable and mino type.
 """
-def paint_mino(stdscr, mino, type):
+def paint_mino(stdscr, mino, type, erase=False):
 
     i = TETRIMINO_SHAPES.index(type)
     c = TETRIMINO_COLORS[i]
 
+    # using the python ternary operator to decide
+    # what character to use for painting each unit.
+    unit_ch = ' ' if erase else MINO_CHAR
+
     for unit in mino:
-        stdscr.addstr(unit[0], unit[1], MINO_CHAR, curses.color_pair(c))
+        stdscr.addstr(unit[0], unit[1], unit_ch, curses.color_pair(c))
 
 """
 calculate the new yxs for the given mino, type and action.
@@ -139,7 +143,7 @@ def tetris(stdscr):
             color = TETRIMINO_COLORS[index]
             type = TETRIMINO_SHAPES[index]
             tetriminos[index] = calc_mino_yxs(t, type, 'MOVE_DOWN')
-            paint_mino(stdscr, t, type, erase=true)
+            paint_mino(stdscr, t, type, erase=True)
             paint_mino(stdscr, tetriminos[index], type)
 
 curses.wrapper(tetris)
