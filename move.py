@@ -92,7 +92,12 @@ def init_colors(bg_color=-1):
 # the tetris game will play in a  10 x 20 area
 def tetris(stdscr):
 
+    # turn off the default cursor
     curses.curs_set(False)
+
+    # set nodelay mode
+    stdscr.nodelay(True)
+    stdscr.timeout(500)
 
     stdscr.addstr(2, 2, 'Painting tetriminos!')
 
