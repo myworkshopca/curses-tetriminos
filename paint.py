@@ -104,6 +104,7 @@ def tetris(stdscr):
         for y in range (4, 25):
             stdscr.addstr(y, x, chr(9634), curses.color_pair(8))
 
+    # paint tetriminos initially
     paintTetrimino(stdscr, curses.color_pair(4), 'square')
     paintTetrimino(stdscr, curses.color_pair(5), 'line')
     paintTetrimino(stdscr, curses.color_pair(6), 't')
