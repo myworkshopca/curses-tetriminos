@@ -32,12 +32,14 @@ calculate the new yxs for the given mino, type and action.
 def calc_mino_yxs(mino, type, action):
 
     new_mino = []
+    out_bound = False
 
     # work on the action: move down.
     for unit in mino:
         new_mino.append([unit[0] + 1, unit[1]]);
+        out_bound = (unit[0] + 1) >= 25
 
-    return new_mino
+    return (new_mino, out_bound)
 
 """
 initialize all units for each tetrimino for the given type.
@@ -138,12 +140,27 @@ def tetris(stdscr):
             break;
 
         # any other key, we will move down one unit for all tetriminos.
-        for t in tetriminos:
-            index = tetriminos.index(t)
+        for mino in tetriminos:
+
+            index = tetriminos.index(mino)
             color = TETRIMINO_COLORS[index]
             type = TETRIMINO_SHAPES[index]
-            tetriminos[index] = calc_mino_yxs(t, type, 'MOVE_DOWN')
-            paint_mino(stdscr, t, type, erase=True)
-            paint_mino(stdscr, tetriminos[index], type)
+
+            # calculate the new coordinates for the tetrimino.
+            # we will using the the tetrimino's current coordinates to
+            # calculate the new coordinates.
+            new_yxs, out_bound = calc_mino_yxs(mino, type, 'MOVE_DOWN')
+            # erase the current tetrimino.
+            paint_mino(stdscr, mino, type, erase=True)
+
+            # check if the new yxs are inside the border.
+            if out_bound:
+                # set the new yxs to top of the board.
+                new_yxs = init_mino_yxs(type)
+            # paint the new tetrimino
+            paint_mino(stdscr, new_yxs, type)
+
+            # reset the tetrimino list.
+            tetriminos[index] = new_yxs
 
 curses.wrapper(tetris)
