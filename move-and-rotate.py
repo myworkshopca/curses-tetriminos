@@ -54,16 +54,68 @@ def calc_mino_yxs(mino, type, action):
     return (new_mino, out_bound)
 
 """
+Rotate the given tetrimino.
+Each tetrimino will only rotate toward clockwise direction.
+
 """
 def mino_rotate_yxs(mino, type):
-    return
+
+    # the copy method will clone the whole dict object.
+    new_mino = mino.copy()
+    out_bound = False
+
+    # get the index of the given type.
+    index = TETRIMINO_SHAPES.index(type)
+
+    if index == 0:
+        # rotate i shape tetrimino.
+        # i-shape mino only have 2 positions:
+        # - horizontal, this is the initial position position = 0
+        # - vertical, position = 1
+        # we will use the % operator to calc the new position.
+        new_mino['position'] = (mino['position'] + 1) % 2
+        if new_mino['position'] == 0:
+            # rotate the i-shape from vertical to horizontal.
+            # we will use the first block as the center to rotate.
+            new_mino['blocks'] = []
+            # iterate the x axis, start from the x axios of first block
+            for x in range(mino['blocks'][0][1],
+                    # end number not include
+                    mino['blocks'][0][1] + 4 * 2,
+                    # takes 2 units for each block
+                    2):
+                new_mino['blocks'].append([mino['blocks'][0][0], x])
+
+        elif new_mino['position'] == 1:
+            # rotate the i-shape from horizontal to vertical.
+            # we will use the first block as the center to rotate.
+            new_mino['blocks'] = []
+            # iterate the y axis, start from the y axios of first block
+            for y in range(mino['blocks'][0][0],
+                    # end number not include
+                    mino['blocks'][0][0] + 4,
+                    # takes 1 unit for each block
+                    1):
+                new_mino['blocks'].append([y, mino['blocks'][0][1]])
+                # if any of the y axis greater than 25.
+                out_bound = y >= 25
+
+    # by default it will return the mino as it is.
+    return (new_mino, out_bound)
 
 """
 initialize all units for each tetrimino for the given type.
  characters for building Tetriminos could be found here:
  - http://xahlee.info/comp/unicode_index.html
 
- each tetriminos will have 4 characters / units
+ each tetrimino is a dictionary. it will have the following structure:
+ mino = {
+     # blocks will store the coordinates of the 4 blocks for each tetrimino
+     "blocks": [],
+     # the rotation position, it will have value 0, 1, 2, 3.
+     # the initial position is 0
+     "position": 0
+ }
 """
 def init_mino_yxs(type):
 
@@ -150,15 +202,8 @@ def tetris(stdscr):
             stdscr.addstr(y, x, chr(9634), curses.color_pair(8))
 
     # the variable to track all tetriminos.
+    # check function init_mino_yxs for the data structure for each mino
     tetriminos = []
-    # each tetrimino is a dictionary. it will have the following structure:
-    #mino = {
-    #    # blocks will store the coordinates of the 4 blocks for each tetrimino
-    #    "blocks": [],
-    #    # the rotation position, it will have value 0, 1, 2, 3.
-    #    # the initial position is 0
-    #    "position": 0
-    #}
 
     # paint the tetriminos intially
     for t in TETRIMINO_SHAPES:
@@ -169,6 +214,9 @@ def tetris(stdscr):
         tetriminos.append(mino)
         paint_mino(stdscr, mino, t)
 
+    # set the initial action
+    action = 'MOVE_DOWN'
+
     # moving loop.
     while True:
         # let's start with using the keyboard press to conrol the movement.
@@ -177,6 +225,10 @@ def tetris(stdscr):
         # quit if user press q.
         if key == ord('q'):
             break;
+        elif key == ord('r'):
+            action = 'ROTATE'
+        else:
+            action = 'MOVE_DOWN'
 
         # any other key, we will move down one unit for all tetriminos.
         for mino in tetriminos:
@@ -188,7 +240,7 @@ def tetris(stdscr):
             # calculate the new coordinates for the tetrimino.
             # we will using the the tetrimino's current coordinates to
             # calculate the new coordinates.
-            new_mino, out_bound = calc_mino_yxs(mino, shape, 'MOVE_DOWN')
+            new_mino, out_bound = calc_mino_yxs(mino, shape, action)
             # erase the current tetrimino.
             paint_mino(stdscr, mino, shape, erase=True)
 
