@@ -172,7 +172,7 @@ def init_mino_yxs(type):
         mino['blocks'] = [ [4, 22], [4, 24], [5, 22], [5, 24] ]
     elif index == 2:
         # the t shape
-        mino['blocks'] = [ [4, 34], [5, 32], [5, 34], [5, 36] ]
+        mino['blocks'] = [ [5, 32], [4, 34], [5, 34], [5, 36] ]
     elif index == 3:
         # the l shape
         mino['blocks'] = [ [4, 48], [5, 44], [5, 46], [5, 48] ]
