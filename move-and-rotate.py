@@ -76,7 +76,6 @@ def mino_rotate_yxs(mino, type):
         new_mino['position'] = (mino['position'] + 1) % 2
         if new_mino['position'] == 0:
             # rotate the i-shape from vertical to horizontal.
-            # we will use the first block as the center to rotate.
             new_mino['blocks'] = []
             # iterate the x axis, start from the x axios of first block
             for x in range(mino['blocks'][0][1],
@@ -99,9 +98,9 @@ def mino_rotate_yxs(mino, type):
                 new_mino['blocks'].append([y, mino['blocks'][0][1]])
                 # if any of the y axis greater than 25.
                 out_bound = y >= 25
-    #elif index == 1:
-    #    # rotate O shape tetrimino, nothing should happen.
-    #    pass
+    elif index == 1:
+        # rotate O shape tetrimino, nothing should happen.
+        pass
     elif index == 2:
         # rotate T shape tetrimino.
         # T shape mino has 4 positions:
@@ -111,6 +110,7 @@ def mino_rotate_yxs(mino, type):
         # - 3, left
         new_mino['position'] = (mino['position'] + 1) % 4
         # get ready the 4 items list for blocks.
+        # it will be [ [], [], [], [] ]
         new_mino['blocks'] = [[]] * 4
         # rotate based on the new mino's position
         if new_mino['position'] == 0:
@@ -133,6 +133,33 @@ def mino_rotate_yxs(mino, type):
             new_mino['blocks'][1] = mino['blocks'][3]
             new_mino['blocks'][2] = mino['blocks'][2]
             new_mino['blocks'][3] = [mino['blocks'][2][0] - 1, mino['blocks'][2][1]]
+    elif index == 3:
+        # rotate L shape tetrimino
+        new_mino['position'] = (mino['position'] + 1) % 4
+        # get ready the 4 items list for blocks.
+        # it will be [ [], [], [], [] ]
+        new_mino['blocks'] = [[]] * 4
+        # rotate based on the new mino's position.
+        if new_mino['position'] == 0:
+            new_mino['blocks'][0] = [mino['blocks'][2][0] + 1, mino['blocks'][2][1]]
+            new_mino['blocks'][1] = mino['blocks'][1]
+            new_mino['blocks'][2] = [mino['blocks'][3][0], mino['blocks'][3][1] + 2]
+            new_mino['blocks'][3] = [mino['blocks'][1][0], mino['blocks'][1][1] + 2]
+        elif new_mino['position'] == 1:
+            new_mino['blocks'][0] = [mino['blocks'][0][0] - 1, mino['blocks'][0][1]]
+            new_mino['blocks'][1] = mino['blocks'][0]
+            new_mino['blocks'][2] = [mino['blocks'][1][0] + 1, mino['blocks'][1][1]]
+            new_mino['blocks'][3] = [mino['blocks'][0][0] + 1, mino['blocks'][0][1]]
+        elif new_mino['position'] == 2:
+            new_mino['blocks'][0] = [mino['blocks'][0][0], mino['blocks'][0][1] + 4]
+            new_mino['blocks'][1] = [mino['blocks'][0][0], mino['blocks'][0][1] + 2]
+            new_mino['blocks'][2] = mino['blocks'][1]
+            new_mino['blocks'][3] = mino['blocks'][0]
+        elif new_mino['position'] == 3:
+            new_mino['blocks'][0] = [mino['blocks'][1][0] + 2, mino['blocks'][1][1]]
+            new_mino['blocks'][1] = [mino['blocks'][2][0], mino['blocks'][2][1] + 2]
+            new_mino['blocks'][2] = mino['blocks'][3]
+            new_mino['blocks'][3] = mino['blocks'][1]
     else:
         # syntactical else statement, it should never happen.
         pass
@@ -175,7 +202,7 @@ def init_mino_yxs(type):
         mino['blocks'] = [ [5, 32], [4, 34], [5, 34], [5, 36] ]
     elif index == 3:
         # the l shape
-        mino['blocks'] = [ [4, 48], [5, 44], [5, 46], [5, 48] ]
+        mino['blocks'] = [ [5, 44], [5, 46], [4, 48], [5, 48] ]
     elif index == 4:
         # the lr shape
         mino['blocks'] = [ [4, 56], [5, 56], [5, 58], [5, 60] ]
