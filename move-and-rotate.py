@@ -1,5 +1,6 @@
 import curses
 import copy
+import random
 
 # Tetris page on wikipedia: https://en.wikipedia.org/wiki/Tetris
 
@@ -356,13 +357,16 @@ def tetris(stdscr):
         # quit if user press q.
         if key == ord('q'):
             break;
-        elif key == ord('r'):
-            action = 'ROTATE'
-        else:
-            action = 'MOVE_DOWN'
+        #elif key == ord('r'):
+        #    action = 'ROTATE'
+        #else:
+        #    action = 'MOVE_DOWN'
 
         # any other key, we will move down one unit for all tetriminos.
         for mino in tetriminos:
+
+            action_id = random.randint(0, 1)
+            action = 'MOVE_DOWN' if action_id == 0 else 'ROTATE'
 
             index = tetriminos.index(mino)
             color = TETRIMINO_COLORS[index]
