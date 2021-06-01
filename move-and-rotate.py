@@ -135,6 +135,11 @@ def mino_rotate_yxs(mino, type):
             new_mino['blocks'][3] = [mino['blocks'][2][0] - 1, mino['blocks'][2][1]]
     elif index == 3:
         # rotate L shape tetrimino
+        # The L shape position is relative to the short leg.
+        # - 0, short leg toward up
+        # - 1, right
+        # - 2, down
+        # - 3, left
         new_mino['position'] = (mino['position'] + 1) % 4
         # get ready the 4 items list for blocks.
         # it will be [ [], [], [], [] ]
@@ -160,6 +165,38 @@ def mino_rotate_yxs(mino, type):
             new_mino['blocks'][1] = [mino['blocks'][2][0], mino['blocks'][2][1] + 2]
             new_mino['blocks'][2] = mino['blocks'][3]
             new_mino['blocks'][3] = mino['blocks'][1]
+    elif index == 4:
+        # rotate Lr shape tetrimino, the reverse L shape
+        # The L shape position is relative to the short leg.
+        # - 0, short leg toward up
+        # - 1, right
+        # - 2, down
+        # - 3, left
+        new_mino['position'] = (mino['position'] + 1) % 4
+        # get ready the 4 items list for blocks.
+        # it will be [ [], [], [], [] ]
+        new_mino['blocks'] = [[]] * 4
+        # rotate based on the new mino's position.
+        if new_mino['position'] == 0:
+            new_mino['blocks'][0] = [mino['blocks'][2][0] - 1, mino['blocks'][2][1] - 2]
+            new_mino['blocks'][1] = [mino['blocks'][2][0], mino['blocks'][2][1] - 2]
+            new_mino['blocks'][2] = mino['blocks'][2]
+            new_mino['blocks'][3] = [mino['blocks'][2][0], mino['blocks'][2][1] + 2]
+        elif new_mino['position'] == 1:
+            new_mino['blocks'][0] = [mino['blocks'][0][0], mino['blocks'][0][1] + 2]
+            new_mino['blocks'][1] = mino['blocks'][0]
+            new_mino['blocks'][2] = mino['blocks'][1]
+            new_mino['blocks'][3] = [mino['blocks'][1][0] + 1, mino['blocks'][1][1]]
+        elif new_mino['position'] == 2:
+            new_mino['blocks'][0] = [mino['blocks'][0][0] + 1, mino['blocks'][0][1] + 2]
+            new_mino['blocks'][1] = [mino['blocks'][0][0], mino['blocks'][0][1] + 2]
+            new_mino['blocks'][2] = mino['blocks'][0]
+            new_mino['blocks'][3] = mino['blocks'][1]
+        elif new_mino['position'] == 3:
+            new_mino['blocks'][0] = [mino['blocks'][2][0] + 2, mino['blocks'][2][1] - 2]
+            new_mino['blocks'][1] = [mino['blocks'][2][0] + 2, mino['blocks'][2][1]]
+            new_mino['blocks'][2] = [mino['blocks'][2][0] + 1, mino['blocks'][2][1]]
+            new_mino['blocks'][3] = mino['blocks'][2]
     else:
         # syntactical else statement, it should never happen.
         pass
