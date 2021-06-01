@@ -1,4 +1,5 @@
 import curses
+import copy
 
 # Tetris page on wikipedia: https://en.wikipedia.org/wiki/Tetris
 
@@ -6,7 +7,8 @@ import curses
 TETRIMINO_SHAPES = ('i', 'o', 't', 'l', 'lr', 'z', 'zr')
 # pick the color scheme for tetriminos.
 # the value will be the curses color pair id
-TETRIMINO_COLORS = (5, 4, 6, 7, 10, 11, 12)
+#TETRIMINO_COLORS = (5, 4, 6, 7, 10, 11, 14)
+TETRIMINO_COLORS = (10, 11, 12, 13, 14, 15, 16)
 
 # set the char for each tetrimino.
 MINO_CHAR = chr(9609)
@@ -61,7 +63,7 @@ Each tetrimino will only rotate toward clockwise direction.
 def mino_rotate_yxs(mino, type):
 
     # the copy method will clone the whole dict object.
-    new_mino = mino.copy()
+    new_mino = copy.deepcopy(mino)
     out_bound = False
 
     # get the index of the given type.
@@ -109,9 +111,6 @@ def mino_rotate_yxs(mino, type):
         # - 2, down,
         # - 3, left
         new_mino['position'] = (mino['position'] + 1) % 4
-        # get ready the 4 items list for blocks.
-        # it will be [ [], [], [], [] ]
-        new_mino['blocks'] = [[]] * 4
         # rotate based on the new mino's position
         if new_mino['position'] == 0:
             new_mino['blocks'][0] = mino['blocks'][1]
@@ -141,9 +140,6 @@ def mino_rotate_yxs(mino, type):
         # - 2, down
         # - 3, left
         new_mino['position'] = (mino['position'] + 1) % 4
-        # get ready the 4 items list for blocks.
-        # it will be [ [], [], [], [] ]
-        new_mino['blocks'] = [[]] * 4
         # rotate based on the new mino's position.
         if new_mino['position'] == 0:
             new_mino['blocks'][0] = [mino['blocks'][2][0] + 1, mino['blocks'][2][1]]
@@ -173,9 +169,6 @@ def mino_rotate_yxs(mino, type):
         # - 2, down
         # - 3, left
         new_mino['position'] = (mino['position'] + 1) % 4
-        # get ready the 4 items list for blocks.
-        # it will be [ [], [], [], [] ]
-        new_mino['blocks'] = [[]] * 4
         # rotate based on the new mino's position.
         if new_mino['position'] == 0:
             new_mino['blocks'][0] = [mino['blocks'][2][0] - 1, mino['blocks'][2][1] - 2]
@@ -203,9 +196,6 @@ def mino_rotate_yxs(mino, type):
         # - 0, left
         # - 1, up
         new_mino['position'] = (mino['position'] + 1) % 2
-        # get ready the 4 items list for blocks.
-        # it will be [ [], [], [], [] ]
-        new_mino['blocks'] = [[]] * 4
         # rotate based on the new mino's position.
         if new_mino['position'] == 0:
             new_mino['blocks'][0] = [mino['blocks'][2][0] - 1, mino['blocks'][2][1]]
@@ -225,7 +215,7 @@ def mino_rotate_yxs(mino, type):
         new_mino['position'] = (mino['position'] + 1) % 2
         # get ready the 4 items list for blocks.
         # it will be [ [], [], [], [] ]
-        new_mino['blocks'] = [[]] * 4
+        #new_mino['blocks'] = [[]] * 4
         # rotate based on the new mino's position.
         if new_mino['position'] == 0:
             new_mino['blocks'][0] = mino['blocks'][2]
