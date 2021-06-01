@@ -197,6 +197,26 @@ def mino_rotate_yxs(mino, type):
             new_mino['blocks'][1] = [mino['blocks'][2][0] + 2, mino['blocks'][2][1]]
             new_mino['blocks'][2] = [mino['blocks'][2][0] + 1, mino['blocks'][2][1]]
             new_mino['blocks'][3] = mino['blocks'][2]
+    elif index == 5:
+        # rotate Z shape tetrimino
+        # The Z shape position is relative to the short leg.
+        # - 0, left
+        # - 1, up
+        new_mino['position'] = (mino['position'] + 1) % 2
+        # get ready the 4 items list for blocks.
+        # it will be [ [], [], [], [] ]
+        new_mino['blocks'] = [[]] * 4
+        # rotate based on the new mino's position.
+        if new_mino['position'] == 0:
+            new_mino['blocks'][0] = [mino['blocks'][2][0] - 1, mino['blocks'][2][1]]
+            new_mino['blocks'][1] = mino['blocks'][0]
+            new_mino['blocks'][2] = mino['blocks'][1]
+            new_mino['blocks'][3] = [mino['blocks'][1][0], mino['blocks'][1][1] + 2]
+        elif new_mino['position'] == 1:
+            new_mino['blocks'][0] = mino['blocks'][1]
+            new_mino['blocks'][1] = mino['blocks'][2]
+            new_mino['blocks'][2] = [mino['blocks'][0][0] + 1, mino['blocks'][0][1]]
+            new_mino['blocks'][3] = [mino['blocks'][0][0] + 2, mino['blocks'][0][1]]
     else:
         # syntactical else statement, it should never happen.
         pass
