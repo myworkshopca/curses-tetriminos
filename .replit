@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 move-and-rotate.py"
+run = "python3 move.py"

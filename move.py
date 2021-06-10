@@ -6,7 +6,8 @@ import curses
 TETRIMINO_SHAPES = ('i', 'o', 't', 'l', 'lr', 'z', 'zr')
 # pick the color scheme for tetriminos.
 # the value will be the curses color pair id
-TETRIMINO_COLORS = (5, 4, 6, 7, 10, 11, 12)
+#TETRIMINO_COLORS = (5, 4, 6, 7, 10, 11, 12)
+TETRIMINO_COLORS = (6, 4, 6, 7, 10, 11, 12)
 
 # set the char for each tetrimino.
 MINO_CHAR = chr(9609)
