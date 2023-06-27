@@ -34,10 +34,14 @@ def paintTetrimino(stdscr, color, type):
 
     if type == 'square':
         # 2 x 2 tetrimino
-        stdscr.addstr(4, 2 + offset_x * 2, unit_ch, color)
-        stdscr.addstr(4, 4 + offset_x * 2, unit_ch, color)
-        stdscr.addstr(5, 2 + offset_x * 2, unit_ch, color)
-        stdscr.addstr(5, 4 + offset_x * 2, unit_ch, color)
+        stdscr.addstr(4, 0 + offset_x * 2, '[', color)
+        stdscr.addstr(4, 1 + offset_x * 2, ']', color)
+        stdscr.addstr(4, 2 + offset_x * 2, '[', color)
+        stdscr.addstr(4, 3 + offset_x * 2, ']', color)
+        stdscr.addstr(5, 0 + offset_x * 2, '[', color)
+        stdscr.addstr(5, 1 + offset_x * 2, ']', color)
+        stdscr.addstr(5, 2 + offset_x * 2, '[', color)
+        stdscr.addstr(5, 3 + offset_x * 2, ']', color)
     elif type == 'line':
         # 1 x 4 line
         for x in range(6, 14, 2):
