@@ -45,37 +45,58 @@ def paintTetrimino(stdscr, color, type):
     elif type == 'line':
         # 1 x 4 line
         for x in range(6, 14, 2):
-            stdscr.addstr(4, x, unit_ch, color)
+            stdscr.addstr(4, x, '[', color)
+            stdscr.addstr(4, x + 1, ']', color)
     elif type == 't':
         # t shape tetrimino
-        stdscr.addstr(4, 4 + offset_x * 3, unit_ch, color)
-        stdscr.addstr(5, 2 + offset_x * 3, unit_ch, color)
-        stdscr.addstr(5, 4 + offset_x * 3, unit_ch, color)
-        stdscr.addstr(5, 6 + offset_x * 3, unit_ch, color)
+        stdscr.addstr(4, 4 + offset_x * 3, '[', color)
+        stdscr.addstr(4, 5 + offset_x * 3, ']', color)
+        stdscr.addstr(5, 2 + offset_x * 3, '[', color)
+        stdscr.addstr(5, 3 + offset_x * 3, ']', color)
+        stdscr.addstr(5, 4 + offset_x * 3, '[', color)
+        stdscr.addstr(5, 5 + offset_x * 3, ']', color)
+        stdscr.addstr(5, 6 + offset_x * 3, '[', color)
+        stdscr.addstr(5, 7 + offset_x * 3, ']', color)
     elif type == 'l':
         # l shape tetrimino
-        stdscr.addstr(4, 6 + offset_x * 4 + 2, unit_ch, color)
-        stdscr.addstr(5, 2 + offset_x * 4 + 2, unit_ch, color)
-        stdscr.addstr(5, 4 + offset_x * 4 + 2, unit_ch, color)
-        stdscr.addstr(5, 6 + offset_x * 4 + 2, unit_ch, color)
+        stdscr.addstr(4, 6 + offset_x * 4 + 2, '[', color)
+        stdscr.addstr(4, 7 + offset_x * 4 + 2, ']', color)
+        stdscr.addstr(5, 2 + offset_x * 4 + 2, '[', color)
+        stdscr.addstr(5, 3 + offset_x * 4 + 2, ']', color)
+        stdscr.addstr(5, 4 + offset_x * 4 + 2, '[', color)
+        stdscr.addstr(5, 5 + offset_x * 4 + 2, ']', color)
+        stdscr.addstr(5, 6 + offset_x * 4 + 2, '[', color)
+        stdscr.addstr(5, 7 + offset_x * 4 + 2, ']', color)
     elif type == 'lr':
         # l reverse shape tetrimino
-        stdscr.addstr(4, 2 + offset_x * 5 + 4, unit_ch, color)
-        stdscr.addstr(5, 2 + offset_x * 5 + 4, unit_ch, color)
-        stdscr.addstr(5, 4 + offset_x * 5 + 4, unit_ch, color)
-        stdscr.addstr(5, 6 + offset_x * 5 + 4, unit_ch, color)
+        stdscr.addstr(4, 2 + offset_x * 5 + 4, '[', color)
+        stdscr.addstr(4, 3 + offset_x * 5 + 4, ']', color)
+        stdscr.addstr(5, 2 + offset_x * 5 + 4, '[', color)
+        stdscr.addstr(5, 3 + offset_x * 5 + 4, ']', color)
+        stdscr.addstr(5, 4 + offset_x * 5 + 4, '[', color)
+        stdscr.addstr(5, 5 + offset_x * 5 + 4, ']', color)
+        stdscr.addstr(5, 6 + offset_x * 5 + 4, '[', color)
+        stdscr.addstr(5, 7 + offset_x * 5 + 4, ']', color)
     elif type == 'z':
         # l shape tetrimino
-        stdscr.addstr(4, 2 + offset_x * 6 + 6, unit_ch, color)
-        stdscr.addstr(4, 4 + offset_x * 6 + 6, unit_ch, color)
-        stdscr.addstr(5, 4 + offset_x * 6 + 6, unit_ch, color)
-        stdscr.addstr(5, 6 + offset_x * 6 + 6, unit_ch, color)
+        stdscr.addstr(4, 2 + offset_x * 6 + 6, '[', color)
+        stdscr.addstr(4, 3 + offset_x * 6 + 6, ']', color)
+        stdscr.addstr(4, 4 + offset_x * 6 + 6, '[', color)
+        stdscr.addstr(4, 5 + offset_x * 6 + 6, ']', color)
+        stdscr.addstr(5, 4 + offset_x * 6 + 6, '[', color)
+        stdscr.addstr(5, 5 + offset_x * 6 + 6, ']', color)
+        stdscr.addstr(5, 6 + offset_x * 6 + 6, '[', color)
+        stdscr.addstr(5, 7 + offset_x * 6 + 6, ']', color)
     elif type == 'zr':
         # l shape tetrimino
-        stdscr.addstr(4, 4 + offset_x * 7 + 8, unit_ch, color)
-        stdscr.addstr(4, 6 + offset_x * 7 + 8, unit_ch, color)
-        stdscr.addstr(5, 4 + offset_x * 7 + 8, unit_ch, color)
-        stdscr.addstr(5, 2 + offset_x * 7 + 8, unit_ch, color)
+        stdscr.addstr(4, 4 + offset_x * 7 + 8, '[', color)
+        stdscr.addstr(4, 5 + offset_x * 7 + 8, ']', color)
+        stdscr.addstr(4, 6 + offset_x * 7 + 8, '[', color)
+        stdscr.addstr(4, 7 + offset_x * 7 + 8, ']', color)
+        stdscr.addstr(5, 4 + offset_x * 7 + 8, '[', color)
+        stdscr.addstr(5, 5 + offset_x * 7 + 8, ']', color)
+        stdscr.addstr(5, 2 + offset_x * 7 + 8, '[', color)
+        stdscr.addstr(5, 3 + offset_x * 7 + 8, ']', color)
 
 # the tetris game will play in a  10 x 20 area
 def tetris(stdscr):
