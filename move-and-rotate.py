@@ -24,10 +24,13 @@ def paint_mino(stdscr, mino, type, erase=False):
 
     # using the python ternary operator to decide
     # what character to use for painting each unit.
-    unit_ch = ' ' if erase else MINO_CHAR
+    #unit_ch = ' ' if erase else MINO_CHAR
+    unit_ch = ' ' if erase else '['
+    unit_ch_1 = ' ' if erase else ']'
 
     for unit in mino['blocks']:
         stdscr.addstr(unit[0], unit[1], unit_ch, curses.color_pair(c))
+        stdscr.addstr(unit[0], unit[1] + 1, unit_ch_1, curses.color_pair(c))
 
 """
 calculate the new yxs for the given mino, type and action.
@@ -58,7 +61,7 @@ def calc_mino_yxs(mino, type, action):
 
 """
 Rotate the given tetrimino.
-Each tetrimino will only rotate toward clockwise direction.
+Each tetrimino can only rotate toward clockwise direction.
 
 """
 def mino_rotate_yxs(mino, type):
