@@ -14,6 +14,9 @@ MINO_CHAR = chr(9609)
 
 """
 Paint the tetrimino for the given mino variable and mino type.
+  - mino is the array of 4 units, [x, y]
+  - type is the type of tetrimino
+  - 
 """
 def paint_mino(stdscr, mino, type, erase=False):
 
@@ -22,13 +25,18 @@ def paint_mino(stdscr, mino, type, erase=False):
 
     # using the python ternary operator to decide
     # what character to use for painting each unit.
-    unit_ch = ' ' if erase else MINO_CHAR
+    # whitespace will NOT show front color
+    #unit_ch = ' ' if erase else MINO_CHAR
+    unit_ch = ' ' if erase else '['
+    unit_ch_1 = ' ' if erase else ']'
 
     for unit in mino:
         stdscr.addstr(unit[0], unit[1], unit_ch, curses.color_pair(c))
+        stdscr.addstr(unit[0], unit[1] + 1, unit_ch_1, curses.color_pair(c))
 
 """
 calculate the new yxs for the given mino, type and action.
+using the "[]" as unit.
 """
 def calc_mino_yxs(mino, type, action):
 
